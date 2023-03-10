@@ -5,7 +5,11 @@ exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      headers: { Allow: "POST" },
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, X-Requested-With"
+      },
       body: "Method not allowed"
     };
   }
@@ -39,10 +43,9 @@ exports.handler = async (event) => {
       return {
         statusCode: 200,
         headers: {
-          /* Required for CORS support to work */
-          'Access-Control-Allow-Origin': '*',
-          /* Required for cookies, authorization headers with HTTPS */
-          'Access-Control-Allow-Credentials': true
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, OPTION",
+          "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, X-Requested-With"
         },
         body: JSON.stringify({
           msg: "Your message was sent. Thank you."
@@ -51,6 +54,11 @@ exports.handler = async (event) => {
     }else{
       return {
         statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, OPTION",
+          "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, X-Requested-With"
+        },
         body: JSON.stringify({
           msg: "Could not send your message. Please try again."
         })
@@ -62,6 +70,11 @@ exports.handler = async (event) => {
     console.log(err)
     return {
       statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTION",
+        "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, X-Requested-With"
+      },
       body: JSON.stringify({
         msg: "Could not send your message. Please try again."
       })

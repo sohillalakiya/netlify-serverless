@@ -28,10 +28,9 @@
       fetch("https://astonishing-gumption-0bd5ef.netlify.app/.netlify/functions/nodemailer-email-send", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
+            "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTION",
+    "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, X-Requested-With"
         },
         body: JSON.stringify({
           email,
