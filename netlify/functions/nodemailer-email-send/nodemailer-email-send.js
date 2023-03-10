@@ -7,7 +7,6 @@ exports.handler = async (event) => {
       statusCode: 405,
       headers: {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST",
       },
       body: "Method not allowed"
     };
