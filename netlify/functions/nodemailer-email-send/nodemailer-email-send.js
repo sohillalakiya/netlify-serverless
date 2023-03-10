@@ -8,7 +8,6 @@ exports.handler = async (event) => {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST",
-        "Access-Control-Allow-Headers": "Content-Type"
       },
       body: "Method not allowed"
     };
@@ -44,7 +43,6 @@ exports.handler = async (event) => {
         statusCode: 200,
         headers: {
           "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "Content-Type"
         },
         body: JSON.stringify({
           msg: "Your message was sent. Thank you."
@@ -55,7 +53,6 @@ exports.handler = async (event) => {
         statusCode: 500,
         headers: {
           "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "Content-Type"
         },
         body: JSON.stringify({
           msg: "Could not send your message. Please try again."
@@ -70,7 +67,6 @@ exports.handler = async (event) => {
       statusCode: 500,
       headers: {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type"
       },
       body: JSON.stringify({
         msg: "Could not send your message. Please try again."
