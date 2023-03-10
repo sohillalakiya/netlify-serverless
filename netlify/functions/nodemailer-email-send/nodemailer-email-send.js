@@ -18,17 +18,14 @@ exports.handler = async (event) => {
       port: 587,
       secure: false,
       auth: {
-          user: "sohillalakiya2306@gmail.com",
-          pass: "zicibjkgnhrhgprm"
+          user: `${process.env.CONTACT_EMAIL}`,
+          pass: `${process.env.CONTACT_EMAIL_PASS}`
       }
     });
   
-    
-    // yzcodnzhgasmlhqo
-
     const msgToOwner = {
-      to: "sohillalakiya2306@gmail.com",
-      from: "sohillalakiya2306@gmail.com",
+      to: process.env.CONTACT_EMAIL,
+      from: process.env.CONTACT_EMAIL,
       subject: `Message from contact form`,
       html: "<div>" + "<span>"+ "Name: " + name + "<span>" + "<br>" +
             "<span>"+ "Email: " + email + "<span>" + "<br>" +
@@ -36,22 +33,8 @@ exports.handler = async (event) => {
             "<span>"+ "Message: " + details + "<span>" + "<br>" +
             "</div>",
     };
-    
-    // const msgToClient = {
-    //   to: email,
-    //   from: "sohillalakiya2306@gmail.com",
-    //   subject: `Contact Abhishek Textile`,
-    //   html: "<div>"+ "<h3>" + "Thank You " + name + "</h3>" +
-    //         "<h4>" + "We Will Contact Back You Soon" + "</h4>" +
-    //         "<span>"+ "Name: " + name + "<span>" + "<br>" +
-    //         "<span>"+ "Email: " + email + "<span>" + "<br>" +
-    //         "<span>"+ "Subject: " + subject + "<span>" + "<br>" +
-    //         "<span>"+ "Message: " + details + "<span>" + "<br>"+ 
-    //        "</div>"
-    // };
 
     let infoForOwnerEmail = await transporter.sendMail(msgToOwner);
-    // let infoForClientEmail = await transporter.sendMail(msgToClient);
     if (infoForOwnerEmail.messageId){
       return {
         statusCode: 200,
