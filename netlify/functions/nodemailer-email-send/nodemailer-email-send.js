@@ -38,6 +38,12 @@ exports.handler = async (event) => {
     if (infoForOwnerEmail.messageId){
       return {
         statusCode: 200,
+        headers: {
+          /* Required for CORS support to work */
+          'Access-Control-Allow-Origin': '*',
+          /* Required for cookies, authorization headers with HTTPS */
+          'Access-Control-Allow-Credentials': true
+        },
         body: JSON.stringify({
           msg: "Your message was sent. Thank you."
         })
