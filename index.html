@@ -25,85 +25,77 @@
       const subject = $("#subjectInput").val();
       const details = $("#detailsInput").val();
 
-      fetch("https://astonishing-gumption-0bd5ef.netlify.app/.netlify/functions/nodemailer-email-send", {
-        method: "POST",
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type"
-        },
-        body: JSON.stringify({
-          email,
-          name,
-          subject,
-          details,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Data:", data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-        alert();
+      fetch(
+        "https://astonishing-gumption-0bd5ef.netlify.app/.netlify/functions/nodemailer-email-send",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            name,
+            subject,
+            details,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error(error));
+
+      alert();
     }
   </script>
   <body>
     <div class="container p-4">
       <!-- <form> -->
-        <div class="form-group">
-          <label for="exampleInputPassword1">Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nameInput"
-            placeholder="Password"
-          />
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="emailInput"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-          />
-          <small id="emailHelp" class="form-text text-muted"
-            >We'll never share your email with anyone else.</small
-          >
-        </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nameInput"
+          placeholder="Password"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="emailInput"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+      </div>
 
-        <div class="form-group">
-          <label for="exampleInputPassword1">subjet</label>
-          <input
-            type="text"
-            class="form-control"
-            id="subjectInput"
-            placeholder="Password"
-          />
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Message</label>
-          <input
-            type="text"
-            class="form-control"
-            id="detailsInput"
-            placeholder="Password"
-          />
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1"
-            >Check me out</label
-          >
-        </div>
-        <button onclick="submitForm()" class="btn btn-primary">Submit</button>
+      <div class="form-group">
+        <label for="exampleInputPassword1">subjet</label>
+        <input
+          type="text"
+          class="form-control"
+          id="subjectInput"
+          placeholder="Password"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Message</label>
+        <input
+          type="text"
+          class="form-control"
+          id="detailsInput"
+          placeholder="Password"
+        />
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button onclick="submitForm()" class="btn btn-primary">Submit</button>
       <!-- </form> -->
     </div>
   </body>

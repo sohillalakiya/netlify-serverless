@@ -1,16 +1,21 @@
 const nodemailer = require('nodemailer')
 
-exports.handler = async (event) => {
+exports.handler = async (event, context) => {
 
-  if (event.httpMethod !== "POST") {
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type'
+  };
+
+  if (event.httpMethod === 'GET') {
     return {
-      statusCode: 405,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: "Method not allowed"
+      statusCode: 400,
+      headers,
+      body: JSON.stringify({ message: 'Method not allowed' })
     };
   }
+
+
 
   try {
     const {name,email,subject,details} = JSON.parse(event.body);
@@ -40,36 +45,27 @@ exports.handler = async (event) => {
     if (infoForOwnerEmail.messageId){
       return {
         statusCode: 200,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          msg: "Your message was sent. Thank you."
-        })
+        headers,
+        body: JSON.stringify({ message: `Your message was sent. Thank you` })
       };
+  
+    
     }else{
       return {
-        statusCode: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          msg: "Could not send your message. Please try again."
-        })
+        statusCode: 405,
+        headers,
+        body: JSON.stringify({ error: 'Could not send email please try again' })
       };
+    
     }
 
   }
   catch(err) {
     console.log(err)
     return {
-      statusCode: 500,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        msg: "Could not send your message. Please try again."
-      })
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({ error: 'Something went wrong...' })
     };
   }
 
