@@ -18,6 +18,7 @@ exports.handler = async (event, context) => {
 
 
   try {
+    console.log(event.body)
     const {name,email,subject,details} = JSON.parse(event.body);
 
     const transporter = nodemailer.createTransport({
