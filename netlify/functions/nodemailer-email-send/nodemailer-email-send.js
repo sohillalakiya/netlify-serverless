@@ -15,10 +15,11 @@ exports.handler = async (event, context) => {
     };
   }
 
-
+if(headers.Access-Control-Allow-Origin != "https://webcrafter.in"){
+  console.log("Denided")
+}
 
   try {
-    console.log(event.body)
     const {name,email,subject,details} = JSON.parse(event.body);
 
     const transporter = nodemailer.createTransport({
