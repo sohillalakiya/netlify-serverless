@@ -17,6 +17,8 @@ exports.handler = async (event, context) => {
 
 if(headers.Access-Control-Allow-Origin != "https://webcrafter.in"){
   console.log("Denided")
+}else{
+console.log(headers)
 }
 
   try {
