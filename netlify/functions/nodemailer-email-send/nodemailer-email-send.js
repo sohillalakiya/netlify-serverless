@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer')
 exports.handler = async (event, context) => {
 
   const headers = {
-    'Access-Control-Allow-Origin': https://webcrafter.in/,
+    'Access-Control-Allow-Origin': "https://webcrafter.in",
     'Access-Control-Allow-Headers': 'Content-Type'
   };
 
